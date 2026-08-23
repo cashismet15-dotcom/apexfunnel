@@ -1,4 +1,4 @@
-# Apex360 — Halı Yıkama Firmaları İçin Reklam & Büyüme Ortağı
+# Apex360 — Halı Yıkama Firmalarını Büyüten Reklam Ajansı
 
 Facebook/Instagram reklamlarından gelen halı yıkama firma sahiplerini niteleyen ve ikna eden tek sayfalık statik açılış sayfası (landing page).
 
