@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.110.7/dist/umd/supabase.js"></script>
 </head>
 <body>
 
@@ -28,14 +29,32 @@
   <div class="container hero-inner">
     <div class="hero-badge">Sadece Halı Yıkama Firmalarıyla Çalışıyoruz</div>
     <h1>Halı Yıkama İşinizi<br><span class="grad">2 Katına Çıkarıyoruz</span></h1>
-    <p class="hero-sub">Reklamdan yazılıma, müşteri akışından operasyona kadar halı yıkama sektörüne özel her şeyi biz hallediyoruz. Ekibiniz ve aracınız hazırsa, hazırsanız bugün başlayalım.</p>
-    <div class="hero-cta-row">
-      <a href="#form" class="btn btn-primary btn-lg">Hazırsanız Bugün Başlayalım</a>
-      <a href="https://wa.me/908508407245?text=Merhaba%20Apex360%2C%20hal%C4%B1%20y%C4%B1kama%20firmam%20i%C3%A7in%20reklam%20deste%C4%9Fi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
-        <svg viewBox="0 0 24 24" class="ic"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.7 17l-1.2 4.4 4.5-1.2A8.9 8.9 0 1 0 17.6 6.3zM12 19.3a7.3 7.3 0 0 1-3.7-1l-.3-.2-2.7.7.7-2.6-.2-.3a7.3 7.3 0 1 1 6.2 3.4zm4-5.5c-.2-.1-1.3-.6-1.5-.7-.2-.1-.3-.1-.5.1s-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.6 6.6 0 0 1-1.2-1.5c-.1-.2 0-.3.1-.4l.4-.4.2-.3v-.3c0-.1-.5-1.2-.7-1.6-.2-.4-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2c0 1.2.9 2.3 1 2.5.1.1 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.3-.6 1.5-1.1.2-.5.2-.9.1-1.1z"/></svg>
-        Hemen WhatsApp'tan Yaz
+    <p class="hero-sub">Kim olduğumuzu ve size nasıl yardımcı olacağımızı kısaca anlatıyorum 👇</p>
+
+    <div class="hero-video-wrap">
+      <div class="video-card hero-video" data-src="assets/videos/0509ismet.mp4" style="background-image:url('assets/images/posters/0509ismet.jpg')">
+        <div class="video-play">
+          <svg viewBox="0 0 24 24" class="play-ic"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <span class="video-label">Kurucuyla Tanışın</span>
+      </div>
+    </div>
+
+    <div class="service-cta-grid">
+      <a href="#form" class="service-cta-card" data-hizmet="Reklam ve Yazılım Hizmeti">
+        <div class="service-cta-ico">📢</div>
+        <h3>Reklam ve Yazılım Hizmeti Al</h3>
+        <p>Bölgesel reklam yönetimi ve Y Takip yazılımıyla müşteri akışınızı büyütelim. Memnun kalmazsanız ücretinizi iade ediyoruz.</p>
+        <span class="service-cta-link">Hemen Başvur →</span>
+      </a>
+      <a href="#form" class="service-cta-card service-cta-card-alt" data-hizmet="Bayilik">
+        <div class="service-cta-ico">🤝</div>
+        <h3>Bayilik Al</h3>
+        <p>Apex360 iş ortağı olun, bölgenizde bizimle birlikte büyüyün. Bayilik aldığınızda tam iş birliği içinde çalışıyoruz.</p>
+        <span class="service-cta-link">Bayiliği İncele →</span>
       </a>
     </div>
+
     <p class="hero-urgency">🔥 Sezon kapıda — bugün başlayan firmalar rakiplerinin önüne geçiyor.</p>
     <div class="hero-trust">
       <div class="trust-item"><strong>%100</strong><span>Sonuç Garantisi</span></div>
@@ -45,83 +64,13 @@
   </div>
 </section>
 
-<!-- AGITATE -->
-<section class="section section-dark">
-  <div class="container narrow center">
-    <h2>Sezon Kapıda, Telefon Sessiz mi Kalıyor?</h2>
-    <p class="lead">Her yıl aynı hikaye: makineler bakımda, ekip hazır, araç yolda... ama müşteri akışı yok. Rakipleriniz reklam yaparken siz "elden ele" müşteri bekliyorsunuz. Bu bir yetenek sorunu değil, sistem sorunu.</p>
-    <p class="lead">Zaten reklama ihtiyacınız var, bunu siz de biliyorsunuz. Sorun reklam yapmamak değil — nasıl yapılacağını ve kime emanet edeceğinizi bilmemek.</p>
-    <p class="lead accent-text">Eğer geride kaldığınızı düşünüyorsanız, düşünmeyin. Biz sizi yeni sisteme adapte ediyoruz — geriye kalan işi biz üstleniyoruz.</p>
-  </div>
-</section>
-
-<!-- SOLUTION -->
-<section class="section">
-  <div class="container">
-    <div class="section-head center">
-      <span class="eyebrow">Ne Sunuyoruz</span>
-      <h2>Halı Yıkama Firmanız İçin Uçtan Uca Büyüme Sistemi</h2>
-      <p class="lead">Küçük bir ücret karşılığında çalışıyoruz — sadece bu sektöre odaklandığımız için maliyetimiz düşük, bu tasarrufu size yansıtıyoruz.</p>
-    </div>
-    <div class="grid-3 grid-4">
-      <div class="card">
-        <div class="card-ico">📍</div>
-        <h3>Bölgesel Reklam Yönetimi</h3>
-        <p>Mahalle ve ilçe bazlı hedeflemeyle sadece hizmet verdiğiniz bölgedeki potansiyel müşterilere ulaşıyoruz. Bütçe boşa gitmiyor, telefon gerçekten çalıyor.</p>
-      </div>
-      <div class="card">
-        <div class="card-ico">📇</div>
-        <h3>Eski Müşteri Canlandırma</h3>
-        <p>Rehberinizde bekleyen eski müşteri numaraları boşuna durmasın. Onları yeniden hatırlatıp aktif müşteriye çeviriyoruz.</p>
-      </div>
-      <div class="card">
-        <div class="card-ico">💻</div>
-        <h3>Yazılım &amp; Otomasyon</h3>
-        <p>Randevu takibi, müşteri yönetimi ve sipariş sürecinizi kolaylaştıran yazılım ihtiyaçlarınızın tamamını biz karşılıyoruz.</p>
-      </div>
-      <div class="card">
-        <div class="card-ico">🤝</div>
-        <h3>Sezon Boyu Saha Desteği</h3>
-        <p>Sezon açılırken yalnız değilsiniz. Kampanya optimizasyonundan müşteri akışına kadar süreç boyunca yanınızdayız.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head center">
-      <span class="eyebrow">Süreç</span>
-      <h2>3 Adımda Yeni Sezona Hazırız</h2>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>Ön Görüşme &amp; Uygunluk</h3>
-        <p>Formu doldurun veya WhatsApp'tan yazın. Ekibiniz ve aracınızın kapasitesini birlikte değerlendirelim.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>Strateji &amp; Kurulum</h3>
-        <p>Bölgenize ve kapasitenize özel reklam ve müşteri akışı stratejisini kurgulayıp devreye alıyoruz.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>Sezon Boyu Büyüme</h3>
-        <p>Kampanyalar çalışırken siz işinize odaklanırsınız, biz akışı ve sonuçları takip ederiz.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROOF -->
+<!-- PROOF / MEMNUNIYET VIDEOLARI -->
 <section class="section" id="kanit">
   <div class="container">
     <div class="section-head center">
       <span class="eyebrow">Kanıtlar</span>
-      <h2>Sahada Ne Yaptığımızı Gösteriyoruz</h2>
-      <p class="lead">Gerçek kampanyalar, gerçek reklam örnekleri ve gerçek müşteri dönüşleri.</p>
+      <h2>Müşteri Memnuniyet Videoları</h2>
+      <p class="lead">Gerçek kampanyalar, gerçek reklam örnekleri ve gerçek müşteri dönüşleri — sahada ne yaptığımızı gösteriyoruz.</p>
     </div>
 
     <div class="video-grid">
@@ -170,30 +119,21 @@
   </div>
 </section>
 
-<!-- QUALIFY -->
-<section class="section section-dark" id="uygunluk">
-  <div class="container narrow">
-    <div class="section-head center">
-      <span class="eyebrow">Bize Uygun musunuz?</span>
-      <h2>Kimlerle Çalışıyoruz</h2>
-      <p class="lead">Apex360, hazır operasyonu olan halı yıkama firmalarını büyütmek için var. Aşağıdakiler sizin için geçerliyse, tam doğru yerdesiniz:</p>
-    </div>
-    <ul class="checklist">
-      <li><span class="check">✓</span> Aktif olarak halı yıkama hizmeti veriyorsunuz</li>
-      <li><span class="check">✓</span> Bir ekibiniz var</li>
-      <li><span class="check">✓</span> En az bir servis aracınız var</li>
-      <li><span class="check">✓</span> Yeni gelecek müşteri talebini karşılayabilecek kapasiteniz var</li>
-    </ul>
-    <p class="reassure">Reklam ve dijital sistemler konusunda tecrübeniz olmasa da sorun değil — sizi süreç boyunca biz yönlendiriyor, yeni sisteme adapte ediyoruz. Geride kaldığınızı düşünmenize gerek yok.</p>
+<!-- AGITATE / BRIDGE -->
+<section class="section section-dark">
+  <div class="container narrow center">
+    <h2>Sezon Kapıda, Telefon Sessiz mi Kalıyor?</h2>
+    <p class="lead">Her yıl aynı hikaye: makineler bakımda, ekip hazır, araç yolda... ama müşteri akışı yok. Rakipleriniz reklam yaparken siz "elden ele" müşteri bekliyorsunuz. Bu bir yetenek sorunu değil, sistem sorunu.</p>
+    <p class="lead accent-text">Eğer geride kaldığınızı düşünüyorsanız, düşünmeyin. Biz sizi yeni sisteme adapte ediyoruz — geriye kalan işi biz üstleniyoruz.</p>
   </div>
 </section>
 
-<!-- GUARANTEE -->
-<section class="section guarantee-section">
+<!-- GROWTH CTA -->
+<section class="section growth-cta-section">
   <div class="container narrow center">
-    <div class="guarantee-badge">🛡️</div>
-    <h2>Sonuç Garantisi</h2>
-    <p class="lead">Reklamlarınızı güvenilir bir ekibe emanet ediyorsunuz — bu bizim için de bir sorumluluk. Çalışmamızdan memnun kalmazsanız, ücretinizi iade ediyoruz. Basit ve net.</p>
+    <h2>İşini Büyütmeye Bugün Başla</h2>
+    <p class="lead">Uygun bir görüşme saati seçin, formu doldurun — sizi arayıp doğrudan tanışalım.</p>
+    <a href="#form" class="btn btn-primary btn-lg">Görüşme Saati Belirle →</a>
   </div>
 </section>
 
@@ -201,12 +141,20 @@
 <section class="section section-alt" id="form">
   <div class="container narrow">
     <div class="section-head center">
-      <span class="eyebrow">Başvuru</span>
-      <h2>Hazırsanız, Bugün Başlayalım</h2>
-      <p class="lead">Formu doldurun, bilgileriniz WhatsApp üzerinden doğrudan bize ulaşsın — aynı gün dönüş yapıp işinizi büyütmeye başlıyoruz.</p>
+      <span class="eyebrow">Görüşme Talep Et</span>
+      <h2>Benimle Görüşme Ayarlayın</h2>
+      <p class="lead">Formu doldurun, size uygun tarih ve saati seçin — bilgileriniz WhatsApp üzerinden doğrudan bana ulaşsın, seçtiğiniz saatte görüşüp tanışalım.</p>
     </div>
 
     <form id="leadForm" class="lead-form">
+      <div class="field field-full">
+        <label for="hizmet">Ne İçin Görüşmek İstiyorsunuz? *</label>
+        <select id="hizmet" name="hizmet" required>
+          <option value="Reklam ve Yazılım Hizmeti">Reklam ve Yazılım Hizmeti Almak İstiyorum</option>
+          <option value="Bayilik">Bayilik Almak İstiyorum</option>
+        </select>
+      </div>
+
       <div class="form-row">
         <div class="field">
           <label for="adSoyad">Ad Soyad *</label>
@@ -227,7 +175,32 @@
           <input type="text" id="sehir" name="sehir" required placeholder="Örn: İstanbul / Küçükçekmece">
         </div>
       </div>
+
       <div class="form-row">
+        <div class="field">
+          <label for="tarih">Görüşme İçin Tercih Ettiğiniz Tarih *</label>
+          <input type="date" id="tarih" name="tarih" required>
+        </div>
+        <div class="field">
+          <label for="saat">Tercih Ettiğiniz Saat *</label>
+          <select id="saat" name="saat" required>
+            <option value="" disabled selected>Saat seçin</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row qualify-fields">
         <div class="field">
           <label for="ekip">Ekip Sayısı</label>
           <select id="ekip" name="ekip">
@@ -246,17 +219,118 @@
         </div>
       </div>
 
-      <label class="confirm-check">
-        <input type="checkbox" id="uygunOnay" required>
+      <label class="confirm-check qualify-fields">
+        <input type="checkbox" id="uygunOnay">
         <span>Aktif olarak halı yıkama hizmeti veriyorum, ekibim ve servis aracım var, yeni müşteri talebini karşılayabilecek kapasitem var.</span>
+      </label>
+      <label class="confirm-check bayilik-fields" hidden>
+        <input type="checkbox" id="bayilikOnay">
+        <span>Apex360 ile iş birliği yaparak bayilik almak ve halı yıkama sektöründe birlikte büyümek istiyorum.</span>
       </label>
 
       <button type="submit" class="btn btn-whatsapp btn-lg btn-block">
         <svg viewBox="0 0 24 24" class="ic"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.7 17l-1.2 4.4 4.5-1.2A8.9 8.9 0 1 0 17.6 6.3zM12 19.3a7.3 7.3 0 0 1-3.7-1l-.3-.2-2.7.7.7-2.6-.2-.3a7.3 7.3 0 1 1 6.2 3.4zm4-5.5c-.2-.1-1.3-.6-1.5-.7-.2-.1-.3-.1-.5.1s-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.6 6.6 0 0 1-1.2-1.5c-.1-.2 0-.3.1-.4l.4-.4.2-.3v-.3c0-.1-.5-1.2-.7-1.6-.2-.4-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2c0 1.2.9 2.3 1 2.5.1.1 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.3-.6 1.5-1.1.2-.5.2-.9.1-1.1z"/></svg>
-        Şimdi Başla — WhatsApp'tan Gönder
+        Görüşme Talebimi Gönder — WhatsApp'tan
       </button>
-      <p class="form-note">Gönder butonuna bastığınızda WhatsApp üzerinden Apex360 ile doğrudan sohbet başlatılır.</p>
+      <p class="form-note">Gönder butonuna bastığınızda seçtiğiniz tarih ve saatle birlikte WhatsApp üzerinden doğrudan bana ulaşır, en kısa sürede onaylarım.</p>
     </form>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="section guarantee-section">
+  <div class="container narrow center">
+    <div class="guarantee-badge">🛡️</div>
+    <h2>Garantimiz ve İş Birliğimiz</h2>
+    <p class="lead"><strong>Reklam ve yazılım hizmeti:</strong> Çalışmamızdan memnun kalmazsanız ücretinizi iade ediyoruz. Basit ve net.</p>
+    <p class="lead"><strong>Bayilik:</strong> Bayilik verdiğimizde aramızda tam bir iş birliği kuruyoruz — bölgenizde birlikte büyüyoruz.</p>
+  </div>
+</section>
+
+<!-- Y TAKİP -->
+<section class="section ytakip-section">
+  <div class="container narrow center">
+    <span class="ytakip-badge">Y TAKİP</span>
+    <h2>Halı Siparişleriniz Y Takip ile Güvende</h2>
+    <p class="lead">Y Takip, uzun vadeli ürünümüz — bölgedeki birçok halı yıkama firması sipariş, müşteri ve randevu takibini artık Y Takip üzerinden yapıyor. Bizimle çalışan her firmaya Y Takip'i de kullandırıyoruz; siparişleriniz kaybolmuyor, hiçbir müşteri talebi elden kaçmıyor.</p>
+  </div>
+</section>
+
+<!-- QUALIFY -->
+<section class="section section-dark" id="uygunluk">
+  <div class="container narrow">
+    <div class="section-head center">
+      <span class="eyebrow">Bize Uygun musunuz?</span>
+      <h2>Kimlerle Çalışıyoruz</h2>
+      <p class="lead">Apex360, hazır operasyonu olan halı yıkama firmalarını büyütmek için var. Aşağıdakiler sizin için geçerliyse, tam doğru yerdesiniz:</p>
+    </div>
+    <ul class="checklist">
+      <li><span class="check">✓</span> Aktif olarak halı yıkama hizmeti veriyorsunuz</li>
+      <li><span class="check">✓</span> Bir ekibiniz var</li>
+      <li><span class="check">✓</span> En az bir servis aracınız var</li>
+      <li><span class="check">✓</span> Yeni gelecek müşteri talebini karşılayabilecek kapasiteniz var</li>
+    </ul>
+    <p class="reassure">Reklam ve dijital sistemler konusunda tecrübeniz olmasa da sorun değil — sizi süreç boyunca biz yönlendiriyor, yeni sisteme adapte ediyoruz. Geride kaldığınızı düşünmenize gerek yok.</p>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Ne Sunuyoruz</span>
+      <h2>Halı Yıkama Firmanız İçin Uçtan Uca Büyüme Sistemi</h2>
+      <p class="lead">Küçük bir ücret karşılığında çalışıyoruz — sadece bu sektöre odaklandığımız için maliyetimiz düşük, bu tasarrufu size yansıtıyoruz.</p>
+    </div>
+    <div class="grid-3 grid-4">
+      <div class="card">
+        <div class="card-ico">📍</div>
+        <h3>Bölgesel Reklam Yönetimi</h3>
+        <p>Mahalle ve ilçe bazlı hedeflemeyle sadece hizmet verdiğiniz bölgedeki potansiyel müşterilere ulaşıyoruz. Bütçe boşa gitmiyor, telefon gerçekten çalıyor.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">📇</div>
+        <h3>Eski Müşteri Canlandırma</h3>
+        <p>Rehberinizde bekleyen eski müşteri numaraları boşuna durmasın. Onları yeniden hatırlatıp aktif müşteriye çeviriyoruz.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">📦</div>
+        <h3>Y Takip Uygulaması</h3>
+        <p>Sipariş, müşteri ve randevu takibinizin tamamı Y Takip'te — halı siparişleriniz dijitalde güvende, hiçbir talep elden kaçmıyor.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">🤝</div>
+        <h3>Sezon Boyu Saha Desteği</h3>
+        <p>Sezon açılırken yalnız değilsiniz. Kampanya optimizasyonundan müşteri akışına kadar süreç boyunca yanınızdayız.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Süreç</span>
+      <h2>3 Adımda Yeni Sezona Hazırız</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Görüşme &amp; Uygunluk</h3>
+        <p>Formu doldurun, size uygun görüşme saatini seçin. Ekibiniz ve aracınızın kapasitesini birlikte değerlendirelim.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Strateji &amp; Kurulum</h3>
+        <p>Bölgenize ve kapasitenize özel reklam, yazılım ve Y Takip kurulumunu birlikte devreye alıyoruz.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Sezon Boyu Büyüme</h3>
+        <p>Kampanyalar çalışırken siz işinize odaklanırsınız, biz akışı ve sonuçları takip ederiz.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -277,12 +351,20 @@
         <p>Anlaştığımız çalışma kapsamında memnun kalmazsanız ücretinizi iade ediyoruz. Detayları ön görüşmede netleştiriyoruz.</p>
       </details>
       <details>
+        <summary>Bayilik almak ne anlama geliyor?</summary>
+        <p>Bayilik aldığınızda Apex360 ile tam bir iş birliği içinde çalışıyoruz; bölgenizde birlikte büyüyor, Y Takip dahil tüm sistemlerimizi kullanıyorsunuz.</p>
+      </details>
+      <details>
+        <summary>Y Takip nedir?</summary>
+        <p>Y Takip, halı yıkama firmaları için geliştirdiğimiz uzun vadeli takip yazılımımız. Sipariş, müşteri ve randevularınızı tek yerden, güvenle yönetmenizi sağlıyor.</p>
+      </details>
+      <details>
         <summary>Sadece halı yıkama firmalarıyla mı çalışıyorsunuz?</summary>
         <p>Evet. Bu sayede sektörün müşteri kazanma dinamiklerini herkesten iyi biliyoruz ve genel bir ajans gibi değil, işinizi büyütmek için çalışan bir ekip gibi hareket ediyoruz.</p>
       </details>
       <details>
         <summary>Başvurudan sonra süreç nasıl işliyor?</summary>
-        <p>Formu doldurduğunuzda veya WhatsApp'tan yazdığınızda kısa bir ön görüşme planlıyoruz, kapasitenizi değerlendirip size özel bir plan sunuyoruz.</p>
+        <p>Formu doldurup görüşme saati seçtiğinizde, o saatte sizi arayıp kısa bir görüşme yapıyoruz, kapasitenizi değerlendirip size özel bir plan sunuyoruz.</p>
       </details>
     </div>
   </div>

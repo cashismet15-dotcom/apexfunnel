@@ -16,6 +16,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
 
 html { scroll-behavior: smooth; }
 
@@ -163,6 +164,67 @@ img { max-width: 100%; display: block; }
 }
 .trust-item strong { font-size: 1.2rem; color: var(--accent-2); font-family: 'Poppins', sans-serif; }
 .trust-item span { color: var(--text-dim); font-size: 0.85rem; }
+
+/* ---------- HERO VIDEO ---------- */
+.hero-video-wrap {
+  max-width: 300px;
+  margin: 0 auto 32px;
+}
+.hero-video-wrap .video-card {
+  border: 2px solid var(--card-border);
+  box-shadow: 0 20px 50px -20px rgba(0,0,0,0.6);
+}
+
+/* ---------- SERVICE CTA CARDS ---------- */
+.service-cta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 820px;
+  margin: 0 auto 36px;
+  text-align: left;
+}
+.service-cta-card {
+  display: block;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.service-cta-card:hover { transform: translateY(-4px); border-color: var(--accent-2); }
+.service-cta-card-alt:hover { border-color: var(--accent); }
+.service-cta-ico { font-size: 1.8rem; margin-bottom: 12px; }
+.service-cta-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.service-cta-card p { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 14px; }
+.service-cta-link { color: var(--accent-2); font-weight: 700; font-size: 0.9rem; }
+.service-cta-card-alt .service-cta-link { color: var(--accent); }
+
+/* ---------- GROWTH CTA ---------- */
+.growth-cta-section {
+  background: linear-gradient(135deg, rgba(255,138,61,0.1), rgba(79,209,255,0.1));
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+}
+.growth-cta-section h2 { margin-bottom: 14px; }
+.growth-cta-section .lead { margin-bottom: 28px; }
+
+/* ---------- Y TAKIP ---------- */
+.ytakip-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(255, 138, 61, 0.12);
+  border: 1px solid rgba(255, 138, 61, 0.35);
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+.ytakip-section h2 { margin-bottom: 14px; }
 
 /* ---------- SECTIONS ---------- */
 .section { padding: 88px 0; }
@@ -381,6 +443,7 @@ img { max-width: 100%; display: block; }
   margin-bottom: 18px;
 }
 .field { display: flex; flex-direction: column; gap: 8px; }
+.field-full { margin-bottom: 18px; }
 .field label { font-size: 0.9rem; font-weight: 600; color: var(--text-dim); }
 .field input,
 .field select {
@@ -486,6 +549,7 @@ img { max-width: 100%; display: block; }
   .proof-images { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .video-grid { grid-template-columns: repeat(2, 1fr); }
+  .service-cta-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .grid-4 { grid-template-columns: 1fr; }
