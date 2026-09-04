@@ -143,7 +143,7 @@
     <div class="section-head center">
       <span class="eyebrow">Görüşme Talep Et</span>
       <h2>Benimle Görüşme Ayarlayın</h2>
-      <p class="lead">Formu doldurun, size uygun tarih ve saati seçin — bilgileriniz WhatsApp üzerinden doğrudan bana ulaşsın, seçtiğiniz saatte görüşüp tanışalım.</p>
+      <p class="lead">Takvimden size uygun günü ve saati seçin, bilgilerinizi bırakın — seçtiğiniz saatte sizi arayıp tanışalım.</p>
     </div>
 
     <form id="leadForm" class="lead-form">
@@ -176,28 +176,32 @@
         </div>
       </div>
 
-      <div class="form-row">
-        <div class="field">
-          <label for="tarih">Görüşme İçin Tercih Ettiğiniz Tarih *</label>
-          <input type="date" id="tarih" name="tarih" required>
+      <div class="field field-full">
+        <label>Görüşme İçin Gün ve Saat Seçin *</label>
+        <div class="booking-calendar" id="bookingCalendar">
+          <div class="cal-header">
+            <button type="button" class="cal-nav" id="calPrev" aria-label="Önceki ay">‹</button>
+            <span class="cal-month-label" id="calMonthLabel"></span>
+            <button type="button" class="cal-nav" id="calNext" aria-label="Sonraki ay">›</button>
+          </div>
+          <div class="cal-weekdays">
+            <span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span>
+          </div>
+          <div class="cal-days" id="calDays"></div>
+          <div class="cal-legend">
+            <span><i class="cal-dot cal-dot-free"></i> Müsait</span>
+            <span><i class="cal-dot cal-dot-full"></i> Dolu</span>
+          </div>
         </div>
-        <div class="field">
-          <label for="saat">Tercih Ettiğiniz Saat *</label>
-          <select id="saat" name="saat" required>
-            <option value="" disabled selected>Saat seçin</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-          </select>
+
+        <div class="time-slots" id="timeSlots" hidden>
+          <p class="time-slots-label">Uygun Saatler — <strong id="selectedDateLabel"></strong></p>
+          <div class="slot-grid" id="slotGrid"></div>
         </div>
+
+        <p class="field-error" id="calendarError" hidden>Lütfen bir gün ve saat seçin.</p>
+        <input type="hidden" id="tarih" name="tarih">
+        <input type="hidden" id="saat" name="saat">
       </div>
 
       <div class="form-row qualify-fields">
@@ -228,12 +232,15 @@
         <span>Apex360 ile iş birliği yaparak bayilik almak ve halı yıkama sektöründe birlikte büyümek istiyorum.</span>
       </label>
 
-      <button type="submit" class="btn btn-whatsapp btn-lg btn-block">
-        <svg viewBox="0 0 24 24" class="ic"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.7 17l-1.2 4.4 4.5-1.2A8.9 8.9 0 1 0 17.6 6.3zM12 19.3a7.3 7.3 0 0 1-3.7-1l-.3-.2-2.7.7.7-2.6-.2-.3a7.3 7.3 0 1 1 6.2 3.4zm4-5.5c-.2-.1-1.3-.6-1.5-.7-.2-.1-.3-.1-.5.1s-.6.7-.8.9-.3.2-.5.1a6 6 0 0 1-1.8-1.1 6.6 6.6 0 0 1-1.2-1.5c-.1-.2 0-.3.1-.4l.4-.4.2-.3v-.3c0-.1-.5-1.2-.7-1.6-.2-.4-.4-.4-.5-.4h-.4a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2c0 1.2.9 2.3 1 2.5.1.1 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.3-.6 1.5-1.1.2-.5.2-.9.1-1.1z"/></svg>
-        Görüşme Talebimi Gönder — WhatsApp'tan
-      </button>
-      <p class="form-note">Gönder butonuna bastığınızda seçtiğiniz tarih ve saatle birlikte WhatsApp üzerinden doğrudan bana ulaşır, en kısa sürede onaylarım.</p>
+      <button type="submit" class="btn btn-confirm btn-lg btn-block" id="submitBtn">Randevu Talebimi Gönder</button>
+      <p class="form-note" id="formNote">Gönder butonuna bastığınızda randevu talebiniz doğrudan bize ulaşır, seçtiğiniz saatte sizi ararız.</p>
     </form>
+
+    <div class="lead-form form-success" id="formSuccess" hidden>
+      <div class="form-success-ico">✅</div>
+      <h3>Randevu Talebiniz Alındı</h3>
+      <p><strong id="successDate"></strong> tarihinde görüşmek üzere kaydettik. Belirttiğiniz saatte sizi arayacağız.</p>
+    </div>
   </div>
 </section>
 
