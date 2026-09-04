@@ -264,20 +264,39 @@ if (leadForm) {
     submitBtnEl.disabled = true;
     submitBtnEl.textContent = 'Gönderiliyor...';
 
-    supabaseClient.from('site_basvurulari').insert({
-      hizmet: hizmet,
-      ad_soyad: adSoyad,
-      firma: firma,
-      telefon: telefon,
-      sehir: sehir,
-      gorusme_tarihi: tarih,
-      gorusme_saati: saat,
-      ekip_sayisi: ekip,
-      servis_araci: arac
-    }).then(function (res) {
-      if (res.error) {
-        console.error('CRM kayıt hatası:', res.error);
-      }
+    var meetingNote =
+      'Firma: ' + firma + '\n' +
+      'Telefon: ' + telefon + '\n' +
+      'Şehir/İlçe: ' + sehir + '\n' +
+      (isBayilik
+        ? 'Apex360 ile iş birliği yaparak bayilik almak istiyor.'
+        : 'Ekip: ' + ekip + ' · Araç: ' + arac);
+
+    var meetingAtIso = new Date(tarih + 'T' + saat + ':00+03:00').toISOString();
+
+    Promise.all([
+      supabaseClient.from('site_basvurulari').insert({
+        hizmet: hizmet,
+        ad_soyad: adSoyad,
+        firma: firma,
+        telefon: telefon,
+        sehir: sehir,
+        gorusme_tarihi: tarih,
+        gorusme_saati: saat,
+        ekip_sayisi: ekip,
+        servis_araci: arac
+      }),
+      supabaseClient.from('panel_meetings').insert({
+        title: adSoyad + ' — ' + hizmet,
+        meeting_at: meetingAtIso,
+        note: meetingNote,
+        participants: ['owner', 'huseyin', 'batuhan'],
+        created_by: 'owner'
+      })
+    ]).then(function (results) {
+      results.forEach(function (res) {
+        if (res.error) console.error('CRM kayıt hatası:', res.error);
+      });
 
       var labelDate = new Date(tarih + 'T00:00:00');
       var labelStr = labelDate.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' });
