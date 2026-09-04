@@ -158,20 +158,6 @@ img { max-width: 100%; display: block; }
   font-size: 0.95rem;
   margin-bottom: 36px;
 }
-.hero-trust {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-.trust-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.trust-item strong { font-size: 1.2rem; color: var(--accent-2); font-family: 'Poppins', sans-serif; }
-.trust-item span { color: var(--text-dim); font-size: 0.85rem; }
-
 /* ---------- HERO VIDEO ---------- */
 .hero-video-wrap {
   max-width: 300px;
@@ -261,26 +247,6 @@ img { max-width: 100%; display: block; }
   margin-bottom: 14px;
 }
 .lead { color: var(--text-dim); font-size: 1.05rem; }
-.accent-text { color: var(--accent-2); font-weight: 600; margin-top: 14px; }
-
-/* ---------- CARDS / GRID ---------- */
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.grid-4 { grid-template-columns: repeat(4, 1fr); }
-.card {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-  padding: 32px 26px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-.card:hover { transform: translateY(-4px); border-color: var(--accent-2); }
-.card-ico { font-size: 2rem; margin-bottom: 16px; }
-.card h3 { font-size: 1.15rem; margin-bottom: 10px; }
-.card p { color: var(--text-dim); font-size: 0.95rem; }
 
 /* ---------- STEPS ---------- */
 .steps {
@@ -680,14 +646,10 @@ img { max-width: 100%; display: block; }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 860px) {
-  .grid-3, .steps { grid-template-columns: 1fr; }
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .video-grid { grid-template-columns: repeat(2, 1fr); }
   .service-cta-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 560px) {
-  .grid-4 { grid-template-columns: 1fr; }
 }
 @media (max-width: 520px) {
   :root { font-size: 15px; }
@@ -700,7 +662,6 @@ img { max-width: 100%; display: block; }
   .hero-badge { font-size: 0.78rem; padding: 7px 14px; }
   .hero-cta-row { gap: 12px; }
   .btn-lg { padding: 14px 22px; font-size: 0.95rem; }
-  .hero-trust { gap: 24px; }
   .section { padding: 52px 0; }
   .section-head { margin-bottom: 32px; }
   .lead-form { padding: 20px; }
@@ -712,6 +673,4 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 360px) {
   .video-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .hero-trust { gap: 16px; }
-  .trust-item strong { font-size: 1.05rem; }
 }
