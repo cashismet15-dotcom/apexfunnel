@@ -1,3 +1,5 @@
+var WHATSAPP_NUMBER = '905537721145';
+
 // CRM'e (apexreklam Supabase projesi, site_basvurulari tablosu) kayıt
 var SUPABASE_URL = 'https://eibxqlupbrhanfllzqeb.supabase.co';
 var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpYnhxbHVwYnJoYW5mbGx6cWViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQzMTM0MDMsImV4cCI6MjA5OTg4OTQwM30.0ZIaF47FMCGLlAy7n8lmyilgeV8BNwRxu4A096L4sHw';
@@ -275,17 +277,35 @@ if (leadForm) {
     }).then(function (res) {
       if (res.error) {
         console.error('CRM kayıt hatası:', res.error);
-        submitBtnEl.disabled = false;
-        submitBtnEl.textContent = 'Randevu Talebimi Gönder';
-        alert('Bir sorun oluştu, lütfen tekrar deneyin ya da WhatsApp\'tan yazın: 0850 840 72 45');
-        return;
       }
+
       var labelDate = new Date(tarih + 'T00:00:00');
-      document.getElementById('successDate').textContent =
-        labelDate.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' }) + ' — ' + saat;
+      var labelStr = labelDate.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' });
+
+      var message =
+        'Merhaba Apex360, "' + hizmet + '" için randevu talep ediyorum.\n\n' +
+        'Ad Soyad: ' + adSoyad + '\n' +
+        'Firma: ' + firma + '\n' +
+        'Telefon: ' + telefon + '\n' +
+        'Şehir/İlçe: ' + sehir + '\n' +
+        'Görüşme Tarihi: ' + labelStr + '\n' +
+        'Görüşme Saati: ' + saat + '\n';
+
+      if (isBayilik) {
+        message += '\nApex360 ile iş birliği yaparak bayilik almak istiyorum.';
+      } else {
+        message +=
+          'Ekip Sayısı: ' + ekip + '\n' +
+          'Servis Aracı: ' + arac + '\n\n' +
+          'Ekibim ve aracım var, yeni müşteri kaldırabilecek kapasiteye sahibim.';
+      }
+
+      document.getElementById('successDate').textContent = labelStr + ' — ' + saat;
       leadForm.hidden = true;
       formSuccessEl.hidden = false;
       formSuccessEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message), '_blank', 'noopener');
     });
   });
 }

@@ -20,4 +20,4 @@ npx serve .
 
 ## Lead akışı
 
-Formdaki bilgiler, WhatsApp'a (0850 840 72 45) önceden doldurulmuş bir mesajla yönlendirir.
+Randevu formu, takvimden seçilen gün/saatle birlikte hem CRM'e (apexreklam Supabase projesi, `site_basvurulari` tablosu) kaydedilir hem de WhatsApp'a (0553 772 11 45) önceden doldurulmuş bir mesajla yönlendirir. Genel iletişim butonları (header, footer, yüzen buton) da aynı numarayı kullanır.
