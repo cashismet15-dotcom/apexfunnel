@@ -109,18 +109,38 @@ if (calEl && supabaseClient) {
 
   var MONTH_NAMES = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 
+  // meeting_at UTC olarak saklanıyor; İstanbul yerel tarih/saatine çeviriyoruz.
+  function isoToIstanbulDateTime(iso) {
+    var d = new Date(iso);
+    var parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/Istanbul',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', hour12: false
+    }).formatToParts(d);
+    var map = {};
+    parts.forEach(function (p) { map[p.type] = p.value; });
+    return { date: map.year + '-' + map.month + '-' + map.day, time: map.hour + ':' + map.minute };
+  }
+
   function loadBookingsForRange(startStr, endStr) {
+    // UTC/İstanbul gün sınırı kayabileceği için sorgu aralığını bir gün geniş tutuyoruz.
+    var queryStart = new Date(startStr + 'T00:00:00+03:00');
+    queryStart.setUTCDate(queryStart.getUTCDate() - 1);
+    var queryEnd = new Date(endStr + 'T23:59:59+03:00');
+    queryEnd.setUTCDate(queryEnd.getUTCDate() + 1);
+
     return supabaseClient
-      .from('site_basvurulari')
-      .select('gorusme_tarihi,gorusme_saati')
-      .gte('gorusme_tarihi', startStr)
-      .lte('gorusme_tarihi', endStr)
+      .from('panel_meetings')
+      .select('meeting_at')
+      .gte('meeting_at', queryStart.toISOString())
+      .lte('meeting_at', queryEnd.toISOString())
       .then(function (res) {
         var map = {};
         (res.data || []).forEach(function (row) {
-          if (!row.gorusme_tarihi || !row.gorusme_saati) return;
-          if (!map[row.gorusme_tarihi]) map[row.gorusme_tarihi] = {};
-          map[row.gorusme_tarihi][row.gorusme_saati] = true;
+          if (!row.meeting_at) return;
+          var parts = isoToIstanbulDateTime(row.meeting_at);
+          if (!map[parts.date]) map[parts.date] = {};
+          map[parts.date][parts.time] = true;
         });
         return map;
       })
