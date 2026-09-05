@@ -129,8 +129,10 @@ if (calEl && supabaseClient) {
     return { date: map.year + '-' + map.month + '-' + map.day, time: map.hour + ':' + map.minute };
   }
 
+  // Sadece İsmet'in (owner) müsaitliği bu takvimi etkiler — Hüseyin/Batuhan'ın
+  // kendi CRM'den ayarladığı müsaitlik burayı etkilemez.
   function loadAvailability() {
-    return supabaseClient.from('booking_availability').select('*')
+    return supabaseClient.from('booking_availability').select('*').eq('team_member', 'owner')
       .then(function (res) {
         var map = {};
         (res.data || []).forEach(function (row) { map[row.weekday] = row; });
@@ -147,7 +149,7 @@ if (calEl && supabaseClient) {
   }
 
   function loadBlockedDates() {
-    return supabaseClient.from('booking_blocked_dates').select('blocked_date')
+    return supabaseClient.from('booking_blocked_dates').select('blocked_date').eq('team_member', 'owner')
       .then(function (res) {
         var map = {};
         (res.data || []).forEach(function (row) { map[row.blocked_date] = true; });
@@ -369,7 +371,7 @@ if (leadForm) {
           title: adSoyad + ' — ' + hizmet,
           meeting_at: meetingAtIso,
           note: meetingNote,
-          participants: ['owner', 'huseyin', 'batuhan'],
+          participants: ['owner'],
           created_by: 'owner'
         }).then(function (res) {
           if (res.error) console.error('panel_meetings kayıt hatası:', res.error);
