@@ -528,7 +528,8 @@ img { max-width: 100%; display: block; }
 }
 .cal-day:hover:not(:disabled) { border-color: var(--accent-2); }
 .cal-day.is-other-month { visibility: hidden; }
-.cal-day.is-past { color: var(--text-dim); opacity: 0.35; cursor: not-allowed; background: transparent; }
+.cal-day.is-past,
+.cal-day.is-closed { color: var(--text-dim); opacity: 0.35; cursor: not-allowed; background: transparent; }
 .cal-day.is-full { color: #ff6b6b; opacity: 0.55; cursor: not-allowed; text-decoration: line-through; background: transparent; }
 .cal-day.is-selected { background: var(--accent-2); color: #06101f; font-weight: 700; }
 .cal-day:disabled { pointer-events: none; }

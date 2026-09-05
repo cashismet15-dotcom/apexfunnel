@@ -1,4 +1,5 @@
 .devserver.cjs
 supabase-site_basvurulari.sql
+supabase-booking-availability.sql
 
 .vercel

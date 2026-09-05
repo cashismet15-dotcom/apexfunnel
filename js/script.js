@@ -52,24 +52,29 @@ if (hizmetSelect) {
 }
 
 // ---------- BOOKING CALENDAR ----------
-var SLOT_START_MIN = 9 * 60; // 09:00
-var SLOT_END_MIN = 18 * 60 + 30; // last bookable start time 18:30
 var SLOT_STEP_MIN = 30;
 var MAX_MONTHS_AHEAD = 2; // bugünün ayı + 2 ay ileri
+// Müsaitlik ayarları (booking_availability) henüz yoksa veya çekilemezse kullanılan varsayılan.
+var DEFAULT_AVAILABILITY = { is_open: true, start_time: '09:00:00', end_time: '19:00:00' };
 
-function buildDaySlots() {
+function timeToMinutes(t) {
+  var parts = t.split(':');
+  return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+}
+
+function buildDaySlotsForRange(startTime, endTime) {
+  var startMin = timeToMinutes(startTime);
+  var endMin = timeToMinutes(endTime);
   var slots = [];
-  for (var m = SLOT_START_MIN; m <= SLOT_END_MIN; m += SLOT_STEP_MIN) {
+  for (var m = startMin; m + SLOT_STEP_MIN <= endMin; m += SLOT_STEP_MIN) {
     var h = Math.floor(m / 60), mm = m % 60;
     slots.push((h < 10 ? '0' : '') + h + ':' + (mm === 0 ? '00' : mm));
   }
   return slots;
 }
-var ALL_SLOTS = buildDaySlots();
 
 function pad2(n) { return n < 10 ? '0' + n : '' + n; }
 function toDateStr(d) { return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
-function sameDay(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
 
 function getMonthGridDates(year, month) {
   var firstOfMonth = new Date(year, month, 1);
@@ -92,6 +97,8 @@ if (calEl && supabaseClient) {
     year: today.getFullYear(),
     month: today.getMonth(),
     bookings: {},
+    availability: {},
+    blockedDates: {},
     selectedDate: null,
     selectedTime: null
   };
@@ -122,6 +129,39 @@ if (calEl && supabaseClient) {
     return { date: map.year + '-' + map.month + '-' + map.day, time: map.hour + ':' + map.minute };
   }
 
+  function loadAvailability() {
+    return supabaseClient.from('booking_availability').select('*')
+      .then(function (res) {
+        var map = {};
+        (res.data || []).forEach(function (row) { map[row.weekday] = row; });
+        for (var w = 0; w <= 6; w++) {
+          if (!map[w]) map[w] = DEFAULT_AVAILABILITY;
+        }
+        return map;
+      })
+      .catch(function () {
+        var map = {};
+        for (var w = 0; w <= 6; w++) map[w] = DEFAULT_AVAILABILITY;
+        return map;
+      });
+  }
+
+  function loadBlockedDates() {
+    return supabaseClient.from('booking_blocked_dates').select('blocked_date')
+      .then(function (res) {
+        var map = {};
+        (res.data || []).forEach(function (row) { map[row.blocked_date] = true; });
+        return map;
+      })
+      .catch(function () { return {}; });
+  }
+
+  function daySlotsForWeekday(weekday) {
+    var rule = calState.availability[weekday] || DEFAULT_AVAILABILITY;
+    if (!rule.is_open) return [];
+    return buildDaySlotsForRange(rule.start_time, rule.end_time);
+  }
+
   function loadBookingsForRange(startStr, endStr) {
     // UTC/İstanbul gün sınırı kayabileceği için sorgu aralığını bir gün geniş tutuyoruz.
     var queryStart = new Date(startStr + 'T00:00:00+03:00');
@@ -148,9 +188,11 @@ if (calEl && supabaseClient) {
   }
 
   function renderSlots(dateStr) {
+    var weekday = new Date(dateStr + 'T00:00:00').getDay();
+    var daySlots = daySlotsForWeekday(weekday);
     var taken = calState.bookings[dateStr] || {};
     slotGridEl.innerHTML = '';
-    ALL_SLOTS.forEach(function (t) {
+    daySlots.forEach(function (t) {
       var isTaken = !!taken[t];
       var btn = document.createElement('button');
       btn.type = 'button';
@@ -182,8 +224,10 @@ if (calEl && supabaseClient) {
       var isOtherMonth = d.getMonth() !== calState.month;
       var isPast = d < today;
       var dStr = toDateStr(d);
+      var daySlots = daySlotsForWeekday(d.getDay());
+      var isClosed = daySlots.length === 0 || !!calState.blockedDates[dStr];
       var takenCount = calState.bookings[dStr] ? Object.keys(calState.bookings[dStr]).length : 0;
-      var isFull = takenCount >= ALL_SLOTS.length;
+      var isFull = !isClosed && takenCount >= daySlots.length;
       var isSelected = calState.selectedDate === dStr && !isOtherMonth;
 
       var btn = document.createElement('button');
@@ -192,10 +236,11 @@ if (calEl && supabaseClient) {
       var cls = 'cal-day';
       if (isOtherMonth) cls += ' is-other-month';
       else if (isPast) cls += ' is-past';
+      else if (isClosed) cls += ' is-closed';
       else if (isFull) cls += ' is-full';
       else if (isSelected) cls += ' is-selected';
       btn.className = cls;
-      btn.disabled = isOtherMonth || isPast || isFull;
+      btn.disabled = isOtherMonth || isPast || isClosed || isFull;
 
       if (!btn.disabled) {
         btn.addEventListener('click', function () {
@@ -248,7 +293,11 @@ if (calEl && supabaseClient) {
     refreshMonth();
   });
 
-  refreshMonth();
+  Promise.all([loadAvailability(), loadBlockedDates()]).then(function (results) {
+    calState.availability = results[0];
+    calState.blockedDates = results[1];
+    refreshMonth();
+  });
 }
 
 // Randevu formu -> CRM (Supabase)
