@@ -22,34 +22,7 @@ document.querySelectorAll('.video-card').forEach(function (card) {
   });
 });
 
-// Service CTA cards -> preselect hizmet type in the form
 var hizmetSelect = document.getElementById('hizmet');
-var qualifyFields = document.querySelectorAll('.qualify-fields');
-var bayilikFields = document.querySelectorAll('.bayilik-fields');
-
-function toggleHizmetFields() {
-  if (!hizmetSelect) return;
-  var isBayilik = hizmetSelect.value === 'Bayilik';
-  qualifyFields.forEach(function (el) { el.hidden = isBayilik; });
-  bayilikFields.forEach(function (el) { el.hidden = !isBayilik; });
-  var uygunOnay = document.getElementById('uygunOnay');
-  var bayilikOnay = document.getElementById('bayilikOnay');
-  if (uygunOnay) uygunOnay.required = !isBayilik;
-  if (bayilikOnay) bayilikOnay.required = isBayilik;
-}
-
-document.querySelectorAll('.service-cta-card').forEach(function (card) {
-  card.addEventListener('click', function () {
-    if (!hizmetSelect) return;
-    hizmetSelect.value = card.getAttribute('data-hizmet');
-    toggleHizmetFields();
-  });
-});
-
-if (hizmetSelect) {
-  hizmetSelect.addEventListener('change', toggleHizmetFields);
-  toggleHizmetFields();
-}
 
 // ---------- BOOKING CALENDAR ----------
 var SLOT_STEP_MIN = 30;
@@ -318,9 +291,8 @@ if (leadForm) {
     var sehir = document.getElementById('sehir').value.trim();
     var tarih = document.getElementById('tarih').value;
     var saat = document.getElementById('saat').value;
-    var isBayilik = hizmet === 'Bayilik';
-    var ekip = isBayilik ? null : document.getElementById('ekip').value;
-    var arac = isBayilik ? null : document.getElementById('arac').value;
+    var ekip = document.getElementById('ekip').value;
+    var arac = document.getElementById('arac').value;
 
     var calendarErrorEl = document.getElementById('calendarError');
     if (!tarih || !saat) {
@@ -345,9 +317,7 @@ if (leadForm) {
           'Firma: ' + firma + '\n' +
           'Telefon: ' + telefon + '\n' +
           'Şehir/İlçe: ' + sehir + '\n' +
-          (isBayilik
-            ? 'Apex360 ile iş birliği yaparak bayilik almak istiyor.'
-            : 'Ekip: ' + ekip + ' · Araç: ' + arac);
+          'Ekip: ' + ekip + ' · Araç: ' + arac;
 
         var meetingAtIso = new Date(tarih + 'T' + saat + ':00+03:00').toISOString();
 
@@ -398,14 +368,10 @@ if (leadForm) {
         'Görüşme Tarihi: ' + labelStr + '\n' +
         'Görüşme Saati: ' + saat + '\n';
 
-      if (isBayilik) {
-        message += '\nApex360 ile iş birliği yaparak bayilik almak istiyorum.';
-      } else {
-        message +=
-          'Ekip Sayısı: ' + ekip + '\n' +
-          'Servis Aracı: ' + arac + '\n\n' +
-          'Ekibim ve aracım var, yeni müşteri kaldırabilecek kapasiteye sahibim.';
-      }
+      message +=
+        'Ekip Sayısı: ' + ekip + '\n' +
+        'Servis Aracı: ' + arac + '\n\n' +
+        'Ekibim ve aracım var, yeni müşteri kaldırabilecek kapasiteye sahibim.';
 
       document.getElementById('successDate').textContent = labelStr + ' — ' + saat;
       leadForm.hidden = true;

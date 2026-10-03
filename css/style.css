@@ -177,6 +177,10 @@ img { max-width: 100%; display: block; }
   margin: 0 auto 36px;
   text-align: left;
 }
+.service-cta-grid-single {
+  grid-template-columns: 1fr;
+  max-width: 520px;
+}
 .service-cta-card {
   display: block;
   background: var(--card);
